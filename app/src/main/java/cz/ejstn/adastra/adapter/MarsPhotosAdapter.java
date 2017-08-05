@@ -32,9 +32,7 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
     private Context mContext;
 
 
-    public MarsPhotosAdapter(List<MarsPhoto> photosList, OnPhotoClickListener itemClickListener,
-                             Context context) {
-        this.mPhotoList = photosList;
+    public MarsPhotosAdapter(OnPhotoClickListener itemClickListener, Context context) {
         this.mItemClickListeningActivity = itemClickListener;
         this.mContext = context;
     }
@@ -88,6 +86,7 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
 
         holder.itemInfoTextView.setText(stringBuilder);
 
+        holder.itemView.setTag(position);
 
     }
 
@@ -112,6 +111,10 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
         notifyDataSetChanged();
     }
 
+    public boolean isEmpty() {
+        return mPhotoList == null;
+    }
+
     class MarsPhotosViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_photo_info)
@@ -120,9 +123,16 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
         @BindView(R.id.iv_item_image)
         ImageView itemImageView;
 
-        MarsPhotosViewHolder(View itemView) {
+        MarsPhotosViewHolder(final View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mItemClickListeningActivity.onPhotoClick(mPhotoList.get((Integer) itemView.getTag()));
+                }
+            });
         }
     }
 }

@@ -2,10 +2,9 @@ package cz.ejstn.adastra.model;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by Martin Soukup on 5.8.2017.
- */
+import org.parceler.Parcel;
 
+@Parcel
 public class MarsPhoto {
 
     private int id;

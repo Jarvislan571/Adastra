@@ -3,4 +3,5 @@
     <string name="rovers_photo">rover\'s photo</string>
     <string name="rover">Rover</string>
     <string name="sol">Sol</string>
+    <string name="error">an error occurred</string>
 </resources>
