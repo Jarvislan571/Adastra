@@ -4,4 +4,7 @@
     <string name="rover">Rover</string>
     <string name="sol">Sol</string>
     <string name="error">an error occurred</string>
+    <string name="rover1">Rover</string>
+    <string name="earth_date">Earth date</string>
+    <string name="camera">Camera</string>
 </resources>

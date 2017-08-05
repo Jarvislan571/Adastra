@@ -12,7 +12,7 @@ import org.parceler.Parcel;
 public class Camera {
 
     @SerializedName("full_name")
-    private String name;
+    String name;
 
     @Override
     public String toString() {

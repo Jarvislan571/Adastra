@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements OnPhotoClickListe
 
     private static final String API_KEY = "B1K30QnXEAdDDNjMzkLZ6VbsBoTtqtFhwe2VFWNI";
 
+    private static final String ROVER_NAME = "curiosity";
+    private static final int SOL = 605;
+
     private MarsPhotosAdapter mPhotosAdapter;
 
     private Call<MarsPhotosResponse> mApiCall;
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements OnPhotoClickListe
 
     private void setUpRetrofitService() {
         NasaService service = RetrofitUtils.getNasaService(BASE_URL);
-        mApiCall = service.getPhotos("curiosity", 605, 1, API_KEY);
+        mApiCall = service.getPhotos(ROVER_NAME, SOL, 1, API_KEY);
     }
 
     private void kickOffApiCall() {

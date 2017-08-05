@@ -7,19 +7,19 @@ import org.parceler.Parcel;
 @Parcel
 public class MarsPhoto {
 
-    private int id;
+    int id;
 
-    private int sol;
+    int sol;
 
     @SerializedName("img_src")
-    private String imageUrl;
+    String imageUrl;
 
     @SerializedName("earth_date")
-    private String earthDate;
+    String earthDate;
 
-    private Camera camera;
+    Camera camera;
 
-    private Rover rover;
+    Rover rover;
 
     @Override
     public String toString() {

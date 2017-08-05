@@ -12,7 +12,7 @@ import org.parceler.Parcel;
 public class Rover {
 
     @SerializedName("name")
-    private String name;
+    String name;
 
     @Override
     public String toString() {
