@@ -2,6 +2,8 @@ package cz.ejstn.adastra.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +11,11 @@ import java.util.List;
  * Created by Martin Soukup on 5.8.2017.
  */
 
+@Parcel
 public class MarsPhotosResponse {
 
     @SerializedName("photos")
-    private List<MarsPhoto> marsPhotosList;
+    List<MarsPhoto> marsPhotosList;
 
     public MarsPhotosResponse() {
         // choosing ArrayList because it will be used as data source in a RecyclerView

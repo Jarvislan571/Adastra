@@ -13,16 +13,16 @@
         android:layout_height="match_parent">
 
         <TextView
-            style="@style/ItemTitle"
             android:id="@+id/tv_photo_info"
-            android:ellipsize="end"
+            style="@style/ItemTitle"
             android:layout_width="0dp"
+            android:ellipsize="end"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Rover Curiosity\n\nSol 352\n\nRear camera"
-            app:layout_constraintRight_toLeftOf="@+id/guideline" />
+            tools:text="Rover Curiosity\n\nSol 352\n\nRear camera" />
 
         <ImageView
             android:id="@+id/iv_item_image"

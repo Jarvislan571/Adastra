@@ -29,13 +29,14 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
     private List<MarsPhoto> mPhotoList;
 
     private OnPhotoClickListener mItemClickListeningActivity;
-    private Context mContext;
 
+    private Context mContext;
 
     public MarsPhotosAdapter(OnPhotoClickListener itemClickListener, Context context) {
         this.mItemClickListeningActivity = itemClickListener;
         this.mContext = context;
     }
+
 
     @Override
     public MarsPhotosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
