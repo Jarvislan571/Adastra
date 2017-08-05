@@ -111,10 +111,6 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
         notifyDataSetChanged();
     }
 
-    public boolean isEmpty() {
-        return mPhotoList == null;
-    }
-
     class MarsPhotosViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.tv_photo_info)

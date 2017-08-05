@@ -25,9 +25,7 @@ public class MainActivity extends AppCompatActivity implements OnPhotoClickListe
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final String BASE_URL = "https://api.nasa.gov/mars-photos/api/v1/rovers/";
-
     private static final String API_KEY = "B1K30QnXEAdDDNjMzkLZ6VbsBoTtqtFhwe2VFWNI";
-
     private static final String ROVER_NAME = "curiosity";
     private static final int SOL = 605;
 
@@ -51,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements OnPhotoClickListe
     protected void onStop() {
         super.onStop();
         mApiCall.cancel();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 
     @Override

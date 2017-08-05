@@ -22,7 +22,6 @@ public class RetrofitUtils {
 
     }
 
-
     private static RetrofitUtils getInstance(String baseUrl) {
 
         if (instance == null) {

@@ -9,7 +9,7 @@ import org.parceler.Parcel;
  */
 
 @Parcel
-public class Camera {
+class Camera {
 
     @SerializedName("full_name")
     String name;

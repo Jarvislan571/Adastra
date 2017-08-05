@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import org.parceler.Parcel;
 
+import static android.R.attr.id;
+
 @Parcel
 public class MarsPhoto {
-
-    int id;
 
     int sol;
 
@@ -31,10 +31,6 @@ public class MarsPhoto {
                 ", camera=" + camera +
                 ", rover=" + rover +
                 '}';
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getSol() {

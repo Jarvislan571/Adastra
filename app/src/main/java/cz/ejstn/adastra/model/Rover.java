@@ -9,7 +9,7 @@ import org.parceler.Parcel;
  */
 
 @Parcel
-public class Rover {
+class Rover {
 
     @SerializedName("name")
     String name;

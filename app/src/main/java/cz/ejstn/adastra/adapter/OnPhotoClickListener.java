@@ -3,9 +3,8 @@ package cz.ejstn.adastra.adapter;
 import cz.ejstn.adastra.model.MarsPhoto;
 
 /**
- * Created by Martin Soukup on 5.8.2017.
+ * activity that implements this interface will be notified of {@link MarsPhotosAdapter} item clicks
  */
-
 public interface OnPhotoClickListener {
 
     void onPhotoClick(MarsPhoto marsPhoto);
