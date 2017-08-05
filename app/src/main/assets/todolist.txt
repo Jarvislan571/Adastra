@@ -1,0 +1,14 @@
+co po mě chtějí:
+• Android support SDK (support Android SDK 16+)
+• Retrofit
+• RecyclerView
+• ButterKnife (in case that you don't use MVVM with DataBinding)
+• Parcelable objects and it's passing between Activities/Fragments (Intents)
+
+jak to udělám:
+1. vyberu si API, získám klíč
+2. vyzkouším si různé requesty
+3. nastavím Retrofit
+4. vytvořím recyclerview pro hlavní aktivitu
+5. kliknutí na item v recyclerview spustí detail aktivitu a předá parcelable
+6. v detailní aktivitě získám data z předaného objektu a zobrazím je
