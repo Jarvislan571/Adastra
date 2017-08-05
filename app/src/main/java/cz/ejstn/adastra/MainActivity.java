@@ -2,8 +2,10 @@ package cz.ejstn.adastra;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import cz.ejstn.adastra.adapter.MarsPhotosAdapter;
 import cz.ejstn.adastra.model.MarsPhotosResponse;
 import cz.ejstn.adastra.retrofit.NasaService;
 import cz.ejstn.adastra.retrofit.RetrofitUtils;
@@ -17,10 +19,14 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
+    private MarsPhotosAdapter mPhotosAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setUpRecyclerView();
 
 
         NasaService service = RetrofitUtils.getNasaService(BASE_URL);
@@ -35,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: success");
                 MarsPhotosResponse photosList = response.body();
                 Log.d(TAG, "onResponse: retrieved list: " + photosList.getMarsPhotosList().get(0));
+
             }
 
             @Override
@@ -42,6 +49,15 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure: failure");
             }
         });
+
+    }
+
+    private void setUpRecyclerView() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_photos);
+
+
+
+
 
     }
 }
