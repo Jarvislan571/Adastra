@@ -1,6 +1,5 @@
 package cz.ejstn.adastra.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -9,26 +8,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class MarsPhoto {
 
-    @Expose
     private int id;
 
-    @Expose
     private int sol;
 
-    @Expose
     @SerializedName("img_src")
     private String imageUrl;
 
-    @Expose
     @SerializedName("earth_date")
     private String earthDate;
 
-    @Expose
-    @SerializedName("camera")
     private Camera camera;
 
-    @Expose
-    @SerializedName("rover")
     private Rover rover;
 
     @Override
@@ -42,4 +33,5 @@ public class MarsPhoto {
                 ", rover=" + rover +
                 '}';
     }
+
 }

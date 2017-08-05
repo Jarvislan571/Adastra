@@ -1,6 +1,5 @@
 package cz.ejstn.adastra.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -9,7 +8,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class Rover {
 
-    @Expose
     @SerializedName("name")
     private String name;
 
