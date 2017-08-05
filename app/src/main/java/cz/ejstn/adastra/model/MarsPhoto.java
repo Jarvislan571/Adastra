@@ -16,14 +16,6 @@ public class MarsPhoto {
     private int sol;
 
     @Expose
-    @SerializedName("name")
-    private String roverName;
-
-    @Expose
-    @SerializedName("full_name")
-    private String cameraName;
-
-    @Expose
     @SerializedName("img_src")
     private String imageUrl;
 
@@ -31,39 +23,23 @@ public class MarsPhoto {
     @SerializedName("earth_date")
     private String earthDate;
 
+    @Expose
+    @SerializedName("camera")
+    private Camera camera;
+
+    @Expose
+    @SerializedName("rover")
+    private Rover rover;
+
     @Override
     public String toString() {
         return "MarsPhoto{" +
                 "id=" + id +
                 ", sol=" + sol +
-                ", roverName='" + roverName + '\'' +
-                ", cameraName='" + cameraName + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", earthDate='" + earthDate + '\'' +
+                ", camera=" + camera +
+                ", rover=" + rover +
                 '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getSol() {
-        return sol;
-    }
-
-    public String getRoverName() {
-        return roverName;
-    }
-
-    public String getCameraName() {
-        return cameraName;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public String getEarthDate() {
-        return earthDate;
     }
 }

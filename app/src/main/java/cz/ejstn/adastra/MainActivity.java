@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
         NasaService service = RestClient.getInstance().getNasaService();
 
         Call<MarsPhotosResponse> call = service.getPhotos("curiosity",
-                555, 1, "DEMO_KEY");
+                605, 1, "DEMO_KEY");
 
         call.enqueue(new Callback<MarsPhotosResponse>() {
             @Override
             public void onResponse(Call<MarsPhotosResponse> call, Response<MarsPhotosResponse> response) {
                 Log.d(TAG, "onResponse: success");
                 MarsPhotosResponse photosList = response.body();
-                Log.d(TAG, "onResponse: retrieved list: " + photosList.getMarsPhotosList());
+                Log.d(TAG, "onResponse: retrieved list: " + photosList.getMarsPhotosList().get(0));
             }
 
             @Override
