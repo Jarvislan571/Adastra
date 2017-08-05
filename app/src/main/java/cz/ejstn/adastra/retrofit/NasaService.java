@@ -1,8 +1,6 @@
 package cz.ejstn.adastra.retrofit;
 
-import java.util.List;
-
-import cz.ejstn.adastra.model.MarsPhoto;
+import cz.ejstn.adastra.model.MarsPhotosResponse;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -19,8 +17,8 @@ public interface NasaService {
     // curiosity/photos?sol=1000&page=1&api_key=DEMO_KEY
 
     @GET("{roverName}/photos")
-    Call<List<MarsPhoto>> getPhotos(
-            @Path("curiosity") String roverName,
+    Call<MarsPhotosResponse> getPhotos(
+            @Path("roverName") String roverName,
             @Query("sol") int sol,
             @Query("page") int page,
             @Query("api_key") String apiKey);

@@ -31,6 +31,18 @@ public class MarsPhoto {
     @SerializedName("earth_date")
     private String earthDate;
 
+    @Override
+    public String toString() {
+        return "MarsPhoto{" +
+                "id=" + id +
+                ", sol=" + sol +
+                ", roverName='" + roverName + '\'' +
+                ", cameraName='" + cameraName + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", earthDate='" + earthDate + '\'' +
+                '}';
+    }
+
     public int getId() {
         return id;
     }

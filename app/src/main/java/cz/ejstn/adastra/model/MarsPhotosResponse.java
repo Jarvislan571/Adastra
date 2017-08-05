@@ -17,4 +17,8 @@ public class MarsPhotosResponse {
     public MarsPhotosResponse() {
         marsPhotosList = new ArrayList<>();
     }
+
+    public List<MarsPhoto> getMarsPhotosList() {
+        return marsPhotosList;
+    }
 }
