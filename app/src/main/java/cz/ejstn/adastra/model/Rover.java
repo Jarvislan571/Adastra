@@ -17,4 +17,8 @@ public class Rover {
                 "name='" + name + '\'' +
                 '}';
     }
+
+    public String getName() {
+        return name;
+    }
 }

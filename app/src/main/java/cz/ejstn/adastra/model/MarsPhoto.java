@@ -34,4 +34,28 @@ public class MarsPhoto {
                 '}';
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getSol() {
+        return sol;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getEarthDate() {
+        return earthDate;
+    }
+
+    public String getRoverName() {
+        return rover.getName();
+    }
+
+    public String getCameraName() {
+        return camera.getName();
+    }
+
 }

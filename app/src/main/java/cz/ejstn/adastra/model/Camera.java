@@ -17,4 +17,8 @@ public class Camera {
                 "name='" + name + '\'' +
                 '}';
     }
+
+    public String getName() {
+        return name;
+    }
 }
