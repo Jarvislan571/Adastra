@@ -18,9 +18,9 @@ import cz.ejstn.adastra.R;
 import cz.ejstn.adastra.model.MarsPhoto;
 
 /**
- * Created by Martin Soukup on 5.8.2017.
+ * Adapter for {@link RecyclerView} that shows list of Mars rover photos
+ * in {@link cz.ejstn.adastra.MainActivity}
  */
-
 public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.MarsPhotosViewHolder> {
 
     private static final int VIEW_TYPE_IMAGE_RIGHT = 420;
@@ -28,6 +28,9 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
 
     private List<MarsPhoto> mPhotoList;
 
+    /**
+     * Object implementing this interface will be notified of item clicks in {@link MarsPhotosAdapter}
+     */
     private OnPhotoClickListener mItemClickListeningActivity;
 
     private Context mContext;
@@ -62,37 +65,40 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
     public void onBindViewHolder(MarsPhotosViewHolder holder, int position) {
         MarsPhoto currentPhoto = mPhotoList.get(position);
 
+        // loading image async with Picasso
         String photoUrl = currentPhoto.getImageUrl();
         Picasso.with(mContext).load(photoUrl).into(holder.itemImageView);
 
+        // retreving all data and passing it into the TextView
         String roverName = currentPhoto.getRoverName();
         int sol = currentPhoto.getSol();
         String cameraName = currentPhoto.getCameraName();
         String roverLabel = mContext.getString(R.string.rover);
         String solLabel = mContext.getString(R.string.sol);
-
         String newLine = "\n\n";
+        String space = " ";
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
                 .append(roverLabel)
-                .append(" ")
+                .append(space)
                 .append(roverName)
                 .append(newLine)
                 .append(solLabel)
-                .append(" ")
+                .append(space)
                 .append(sol)
                 .append(newLine)
                 .append(cameraName);
 
         holder.itemInfoTextView.setText(stringBuilder);
 
+        // placing a position tag, that will be used return correct object on item clicks
         holder.itemView.setTag(position);
-
     }
 
     @Override
     public int getItemViewType(int position) {
+        // alternate between two item layouts
         if (position % 2 == 1)
             return VIEW_TYPE_IMAGE_LEFT;
         else
@@ -107,8 +113,13 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
             return mPhotoList.size();
     }
 
-    public void swapData(List<MarsPhoto> newPhotos) {
-        mPhotoList = newPhotos;
+    /**
+     * Makes the adapter show passed in data
+     *
+     * @param photosToShow list of photos that is to be displayed
+     */
+    public void swapData(List<MarsPhoto> photosToShow) {
+        mPhotoList = photosToShow;
         notifyDataSetChanged();
     }
 
@@ -124,10 +135,11 @@ public class MarsPhotosAdapter extends RecyclerView.Adapter<MarsPhotosAdapter.Ma
             super(itemView);
             ButterKnife.bind(this, itemView);
 
+            // notifying listening activity of item clicks, passing it object at clicked position
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mItemClickListeningActivity.onPhotoClick(mPhotoList.get((Integer) itemView.getTag()));
+                    mItemClickListeningActivity.onItemPhotoListClick(mPhotoList.get((Integer) itemView.getTag()));
                 }
             });
         }

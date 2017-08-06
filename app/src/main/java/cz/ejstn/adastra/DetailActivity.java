@@ -15,6 +15,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cz.ejstn.adastra.model.MarsPhoto;
 
+/**
+ * Activity that shows the user details of particular rover photo
+ */
 public class DetailActivity extends AppCompatActivity {
 
     public static final String INTENT_PHOTO_EXTRA_KEY = "photo";
@@ -32,7 +35,6 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.iv_detail_photo)
     ImageView mDetailPhotoImageView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // I dont want the MainActivity to be recreated again to prevent unnecessary API request
         if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return true;

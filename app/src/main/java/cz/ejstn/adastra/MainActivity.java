@@ -14,13 +14,16 @@ import org.parceler.Parcels;
 import cz.ejstn.adastra.adapter.MarsPhotosAdapter;
 import cz.ejstn.adastra.adapter.OnPhotoClickListener;
 import cz.ejstn.adastra.model.MarsPhoto;
-import cz.ejstn.adastra.model.MarsPhotosResponse;
+import cz.ejstn.adastra.model.NasaApiResponse;
 import cz.ejstn.adastra.retrofit.NasaService;
 import cz.ejstn.adastra.retrofit.RetrofitUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * Activity that shows user list of mars rover photos
+ */
 public class MainActivity extends AppCompatActivity implements OnPhotoClickListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -34,9 +37,9 @@ public class MainActivity extends AppCompatActivity implements OnPhotoClickListe
 
     private MarsPhotosAdapter mPhotosAdapter;
 
-    private Call<MarsPhotosResponse> mApiCall;
+    private Call<NasaApiResponse> mApiCall;
 
-    private MarsPhotosResponse mMarsPhotosResponse;
+    private NasaApiResponse mNasaApiResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +51,13 @@ public class MainActivity extends AppCompatActivity implements OnPhotoClickListe
         // I try not to query the API again everytime user rotates the screen
         if (savedInstanceState != null && savedInstanceState.containsKey(BUNDLE_RESPONSE_KEY)) {
             Log.d(TAG, "onCreate: reusing data");
-            mMarsPhotosResponse = Parcels.unwrap(savedInstanceState.getParcelable(BUNDLE_RESPONSE_KEY));
-            mPhotosAdapter.swapData(mMarsPhotosResponse.getMarsPhotosList());
+            mNasaApiResponse = Parcels.unwrap(savedInstanceState.getParcelable(BUNDLE_RESPONSE_KEY));
+            mPhotosAdapter.swapData(mNasaApiResponse.getMarsPhotosList());
             return;
         }
 
+        // application is started the first time or there is no data that can be reused
         setUpRetrofitService();
-
         kickOffApiCall();
     }
 
@@ -67,15 +70,18 @@ public class MainActivity extends AppCompatActivity implements OnPhotoClickListe
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        if (mMarsPhotosResponse != null)
-            outState.putParcelable(BUNDLE_RESPONSE_KEY, Parcels.wrap(mMarsPhotosResponse));
+        if (mNasaApiResponse != null)
+            outState.putParcelable(BUNDLE_RESPONSE_KEY, Parcels.wrap(mNasaApiResponse));
         super.onSaveInstanceState(outState);
     }
 
+    /**
+     * Callback for recyclerview item clicks
+     */
     @Override
-    public void onPhotoClick(MarsPhoto marsPhoto) {
+    public void onItemPhotoListClick(MarsPhoto clickedMarsPhoto) {
         Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtra(DetailActivity.INTENT_PHOTO_EXTRA_KEY, Parcels.wrap(marsPhoto));
+        intent.putExtra(DetailActivity.INTENT_PHOTO_EXTRA_KEY, Parcels.wrap(clickedMarsPhoto));
         startActivity(intent);
     }
 
@@ -100,29 +106,36 @@ public class MainActivity extends AppCompatActivity implements OnPhotoClickListe
 
     private void kickOffApiCall() {
 
-        mApiCall.enqueue(new Callback<MarsPhotosResponse>() {
+        mApiCall.enqueue(new Callback<NasaApiResponse>() {
             @Override
-            public void onResponse(@NonNull Call<MarsPhotosResponse> call,
-                                   @NonNull Response<MarsPhotosResponse> response) {
+            public void onResponse(@NonNull Call<NasaApiResponse> call,
+                                   @NonNull Response<NasaApiResponse> response) {
                 Log.d(TAG, "onResponse: response code: " + response.code());
 
-                MarsPhotosResponse photos = response.body();
+                NasaApiResponse photos = response.body();
 
-                if (photos != null) {
-                    mMarsPhotosResponse = photos;
-                    mPhotosAdapter.swapData(mMarsPhotosResponse.getMarsPhotosList());
+                if (response.code() == 200 && photos != null) {
+                    mNasaApiResponse = photos;
+                    mPhotosAdapter.swapData(mNasaApiResponse.getMarsPhotosList());
                 } else
-                    Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
+                    showErrorToast();
 
             }
 
             @Override
-            public void onFailure(@NonNull Call<MarsPhotosResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<NasaApiResponse> call, @NonNull Throwable t) {
                 Log.d(TAG, "onFailure: failure");
                 Log.d(TAG, "onFailure: " + t.getMessage());
-                Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
+                showErrorToast();
             }
         });
+    }
+
+    /**
+     * shows a toast with generic error message
+     */
+    private void showErrorToast() {
+        Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_SHORT).show();
     }
 
 }

@@ -7,4 +7,6 @@
     <string name="rover1">Rover</string>
     <string name="earth_date">Earth date</string>
     <string name="camera">Camera</string>
+    <string name="detail_photo">Photo details</string>
+    <string name="mars_mission">Mars rover photos</string>
 </resources>

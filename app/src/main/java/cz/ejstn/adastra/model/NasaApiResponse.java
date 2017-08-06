@@ -12,12 +12,12 @@ import java.util.List;
  */
 
 @Parcel
-public class MarsPhotosResponse {
+public class NasaApiResponse {
 
     @SerializedName("photos")
     List<MarsPhoto> marsPhotosList;
 
-    public MarsPhotosResponse() {
+    public NasaApiResponse() {
         // choosing ArrayList because it will be used as data source in a RecyclerView
         // the adapter will do a lot of searching, from what I know ArrayList is faster for searching
         // than LinkedList
